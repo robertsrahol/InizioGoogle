@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Praktický test</h1>
+
+    <p>Zadej klíčové slovo do Googlu. Výsledky z první strany se uloží do souboru JSON</a>.</p>
+
+    <form method="post" action="/Home/Results">
+        <input type="text" name="query" placeholder="Zadejte klíčové slovo" required>
+        <button type="submit">Vyhledat</button>
+    </form>
+</div>
+

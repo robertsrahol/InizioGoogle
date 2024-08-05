@@ -1,0 +1,19 @@
+﻿
+
+@model List<string>
+
+@{
+    ViewData["Title"] = "Výsledky hledání";
+}
+
+<h2>Výsledky hledání</h2>
+
+<ul>
+    @foreach (var result in Model)
+    {
+        <li>@result</li>
+    }
+</ul>
+
+<p>Výsledky hledání byly uloženy do souboru: @ViewBag.FilePath</p>
+
