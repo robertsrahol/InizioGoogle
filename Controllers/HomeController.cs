@@ -49,19 +49,47 @@ namespace InizioGoogle.Controllers
             return results;
         }
 
-        //Tato metoda uloží výsledky vyhledávání do JSON souboru
+        ////Tato metoda uloží výsledky vyhledávání do JSON souboru
+        //private async Task SaveResultsToFile(List<string> results)
+        //{
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "results.json");
+        //    ViewBag.FilePath = filePath;
+
+        //    try
+        //    {
+        //        var json = JsonSerializer.Serialize(results, new JsonSerializerOptions
+        //        {
+        //            WriteIndented = true // Volitelnì formátování pro lepší èitelnost
+        //        });
+
+        //        await System.IO.File.WriteAllTextAsync(filePath, json);
+        //        Console.WriteLine($"Results saved to: {filePath}");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred while saving the file: {ex.Message}");
+        //    }
+        //}
+
+
+        // Tato metoda uloží výsledky vyhledávání do JSON souboru
         private async Task SaveResultsToFile(List<string> results)
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "results.json");
-            ViewBag.FilePath = filePath;
+            // Nastavíme cestu k souboru ve složce `wwwroot/files`
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", "results.json");
+
+            // URL, která bude pøístupná v odkazu ke stažení
+            ViewBag.FilePath = "/files/results.json";
 
             try
             {
+                // Serializace výsledkù do JSON formátu
                 var json = JsonSerializer.Serialize(results, new JsonSerializerOptions
                 {
                     WriteIndented = true // Volitelnì formátování pro lepší èitelnost
                 });
 
+                // Zápis JSON do souboru
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 Console.WriteLine($"Results saved to: {filePath}");
             }
@@ -70,6 +98,8 @@ namespace InizioGoogle.Controllers
                 Console.WriteLine($"An error occurred while saving the file: {ex.Message}");
             }
         }
+
+
     }
 }
 
