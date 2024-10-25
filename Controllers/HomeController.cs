@@ -14,7 +14,7 @@ namespace InizioGoogle.Controllers
 {
     public class HomeController : Controller
     {
-        //Když uživatel navštíví koøenovou URL aplikace, zobrazí se výchozí stránka
+        //když uživatel navštíví koøenovou URL aplikace, zobrazí se výchozí stránka
 
         [HttpGet]
         public IActionResult Index()
@@ -35,7 +35,7 @@ namespace InizioGoogle.Controllers
             return View(results);
         }
 
-        //Tato metoda provede HTTP GET požadavek na Google vyhledávání s dotazem query.
+        //tato metoda provede HTTP GET požadavek na Google vyhledávání s dotazem query.
         private async Task<List<string>> GetGoogleSearchResults(string query)
         {
             var httpClient = new HttpClient();
@@ -49,33 +49,10 @@ namespace InizioGoogle.Controllers
             return results;
         }
 
-        ////Tato metoda uloží výsledky vyhledávání do JSON souboru
-        //private async Task SaveResultsToFile(List<string> results)
-        //{
-        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "results.json");
-        //    ViewBag.FilePath = filePath;
-
-        //    try
-        //    {
-        //        var json = JsonSerializer.Serialize(results, new JsonSerializerOptions
-        //        {
-        //            WriteIndented = true // Volitelnì formátování pro lepší èitelnost
-        //        });
-
-        //        await System.IO.File.WriteAllTextAsync(filePath, json);
-        //        Console.WriteLine($"Results saved to: {filePath}");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"An error occurred while saving the file: {ex.Message}");
-        //    }
-        //}
-
-
-        // Tato metoda uloží výsledky vyhledávání do JSON souboru
+        // tato metoda uloží výsledky vyhledávání do JSON souboru
         private async Task SaveResultsToFile(List<string> results)
         {
-            // Nastavíme cestu k souboru ve složce `wwwroot/files`
+            // nastavíme cestu k souboru ve složce `wwwroot/files`
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", "results.json");
 
             // URL, která bude pøístupná v odkazu ke stažení
@@ -83,13 +60,13 @@ namespace InizioGoogle.Controllers
 
             try
             {
-                // Serializace výsledkù do JSON formátu
+                // serializace výsledkù do JSON formátu
                 var json = JsonSerializer.Serialize(results, new JsonSerializerOptions
                 {
                     WriteIndented = true // Volitelnì formátování pro lepší èitelnost
                 });
 
-                // Zápis JSON do souboru
+                // zápis JSON do souboru
                 await System.IO.File.WriteAllTextAsync(filePath, json);
                 Console.WriteLine($"Results saved to: {filePath}");
             }
